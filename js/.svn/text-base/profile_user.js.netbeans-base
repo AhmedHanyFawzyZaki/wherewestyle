@@ -1,0 +1,74 @@
+
+
+    $(document).ready(function(){
+        
+         $('#zipcode').change(function() {
+             
+            $('#address').val("");              
+            $('#my_place').val("");              
+             
+         }); 
+         
+         $('#address').change(function() {
+             
+            $('#zipcode').val("");              
+            $('#my_place').val("");               
+             
+         });          
+         
+         
+         $('#my_place').change(function() {
+           
+            $('#zipcode').val("");              
+            $('#address').val("");                
+             
+         }); 
+         
+         $('.emak-academy input:submit').click(function(){
+        	 var fname = $('#fname').val()
+        	 var lname = $('#lname').val()
+        	 var address = $('#address').val()
+        	 var zipcode = $('#zipcode').val()
+        	 
+        	 var phone_type = $('#phone_type').val()
+        	 var phone_number = $('#phone_numer').val()
+        	 
+        	 if(fname == ''){
+        		 $('#fname').after('<span class="required-class">please enter first name</span>')
+        		 window.scrollTo(0, 0);
+        		 $('form').submit(function(e){
+        			 e.preventDefault()
+        		 });
+        	 }
+        	 if(lname == ''){
+        		 $('#lname').after('<span class="required-class">please enter last name</span>')
+        		 window.scrollTo(0, 0);
+        		 $('form').submit(function(e){
+        			 e.preventDefault()
+        		 });
+        	 } 
+        	 if(zipcode == ''){
+        		 $('#zipcode').after('<span class="required-class">please enter zipcode or address</span>')
+        		 window.scrollTo(0, 0);
+        		 $('form').submit(function(e){
+        			 e.preventDefault()
+        		 });
+        	 }
+        	 if(phone_type == ''){
+        		 window.scrollTo(0, 0);
+        		 $('form').submit(function(e){
+        			 e.preventDefault()
+        		 });
+        	 }
+        	 if(phone_number == ''){
+        		 window.scrollTo(0, 0);
+        		 $('#phone_number').after('<span class="required-class">please enter phone number</span>')
+        		 $('form').submit(function(e){
+        			 e.preventDefault()
+        		 });
+        	 }
+        	 
+         });
+         
+                
+    }); // 

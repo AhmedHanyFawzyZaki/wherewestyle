@@ -1,0 +1,57 @@
+.lspace {letter-spacing:1.5px!important;}
+
+.site {
+  color: #F62A64 !important;
+  font-size:16px;
+
+}
+.site2{
+  color: #F62A64 !important;
+  float: left;
+  width: 160px;
+  text-align:right;
+  margin-right:10px;
+
+  
+}
+
+.inbut-setting{
+	margin-top:20px;
+	}
+.site_bold {color:#737373!important; font-size:1.1em!important; font-weight:bold!important;}
+
+.profile_img_div {width:98%!important; float:left!important; margin:5px 0; position:relative;}
+.inputf{position:absolute; bottom: -1px;
+    left: 211px;}
+.profile_img {float:left!important; width:200px!important; height:200px!important;}
+
+.user_controls .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
+    background-color: #F72A65!important;
+    color: #FFFFFF!important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2)!important;
+	font-size:16px;
+}
+.top10px{margin-top:10px;}
+.table th {
+    font-weight: bold;
+}
+.capitalize{text-transform:capitalize;}
+form{margin-bottom:0!important;}
+.login_sys textarea{width:450px!important; height:120px!important;}
+.width300px{width:500px; height:100px;}
+textarea{resize:vertical!important; }
+.msg_user{whdth:50px;
+height:50px;}
+.msg_txt{font-size:14px; font-family:tahoma;}
+.activetr{font-weight:bold!important; color:#C00;}
+.social input[type='text']{margin-bottom:0!important;}
+.floatright{float:right;}
+.margin10px a{margin-bottom:3px!important;margin-left:3px!important; float:left;}
+.faq {min-height:600px;}
+.faq .accordion-heading .accordion-toggle {
+    background-color: #F92A66!important;
+    color: #FFFFFF;
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+}

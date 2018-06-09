@@ -1,0 +1,187 @@
+
+
+    var close_button = '<div id="close_membership_errors" >×</div>';   
+                    
+    $(document).ready(function(){
+
+    	 $('#reg_password').pwstrength();
+    	 
+    	 $.validator.addMethod('mypassword', function(value, element) {
+    	        return this.optional(element) || (value.match(/[a-zA-Z]/) && value.match(/[0-9]/));
+    	    },
+    	    'Password must contain at least one numeric and one alphabetic character.'
+    	 );
+    	 
+    	 $('#reg_form').validate({
+    	        rules: {
+    	            password: {
+    	                required: true,
+    	                minlength: 6,
+    	                mypassword: true
+    	            }
+    	        }
+    	 });
+    	 
+         $(document).on("click",'#popup_membership_form',function(){ 
+                       
+                      $('#membership').modal({
+                            keyboard: true,
+                            show:true,
+                            remote:base_url+"membership/membership_forms"
+                       });         
+         });                           
+        
+        
+         
+         $('#reg_submit').click(function(event) {
+        	 
+              $("#membership_errors").slideUp(500).removeClass("alert-danger").addClass("alert-info").html(loading_plz_wait).slideDown(500);
+              
+              $('#reg_submit').prop('disabled', true);                              
+                
+                //prevent submit
+                event.preventDefault();
+              
+                var username = $("#reg_username").val();
+                var email = $("#reg_email").val();
+                var password = $("#reg_password").val();
+                var repassword = $("#reg_repassword").val(); 
+                var account_type = $("#account_type").val();
+                var terms = $("#terms").attr('checked');
+
+                $.post("membership/register", { username : username , email : email , password : password , repassword : repassword , account_type : account_type, csrf_token : csrf_token , terms : terms }, function(data) {                                             
+
+                         if(data == 1){
+                             
+                            $("#membership_errors").removeClass("alert-danger").removeClass("alert-info").addClass("alert-success").html(close_button+reg_done).slideDown(500);                                                        
+
+                         }else if(data){
+                             
+                            $("#membership_errors").removeClass("alert-info").addClass("alert-danger").html(close_button+data).slideDown(500);
+                            $('#reg_submit').prop('disabled', false);   
+                                                         
+                         } 
+                         
+
+                      
+                    }); // post  
+
+         }); // reg form
+         
+         
+
+     
+         $('#login_submit').click(function(event) {
+
+              $("#membership_errors").slideUp(500).removeClass("alert-danger").addClass("alert-info").html(loading_plz_wait).slideDown(500);
+              
+              $('#login_submit').prop('disabled', true);                              
+                
+                //prevent submit
+                event.preventDefault();
+              
+                var email = $("#login_email").val();
+                var password = $("#login_password").val();
+                       
+                    $.post("membership/login", { email : email , password : password , csrf_token : csrf_token  }, function(data) {                                             
+                        
+                         if(data == 1){
+                             
+                            $("#membership_errors").removeClass("alert-danger").removeClass("alert-info").addClass("alert-success").html(close_button+login_done).slideDown(500);                            
+                            setTimeout("location.href='"+base_url+"notifs'", 2000);   
+                            
+                         }else if(data){
+                             
+                            $("#membership_errors").removeClass("alert-info").addClass("alert-danger").html(close_button+data).slideDown(500);
+                            $('#login_submit').prop('disabled', false);   
+                                                         
+                         } 
+                         
+
+                      
+                    }); // post  
+                
+         }); // reg form
+                   
+                   
+                   
+         $('#fp_submit').click(function(event) {
+
+              $("#membership_errors").slideUp(500).removeClass("alert-danger").addClass("alert-info").html(loading_plz_wait).slideDown(500);
+              
+              $('#fp_submit').prop('disabled', true);                              
+                
+                //prevent submit
+                event.preventDefault();
+              
+                var fp_email = $("#fp_email").val();
+                    $.post("membership/forget_password", { email : fp_email , csrf_token : csrf_token  }, function(data) {                                             
+                         
+                         if(data == 1){
+                             
+                            $("#membership_errors").removeClass("alert-danger").removeClass("alert-info").addClass("alert-success").html(close_button+fp_email_done).slideDown(500);                            
+                            setTimeout("location.href='"+base_url+"'", 2000);   
+                            
+                         }else if(data){
+                             
+                            $("#membership_errors").removeClass("alert-info").addClass("alert-danger").html(close_button+data).slideDown(500);
+                            $('#fp_submit').prop('disabled', false);   
+                                                         
+                         } 
+                         
+
+                      
+                    }); // post  
+                
+         }); // forget password form
+                         
+        
+        
+        
+         $('#confirmation_submit').click(function(event) {
+
+              $("#membership_errors").slideUp(500).removeClass("alert-danger").addClass("alert-info").html(loading_plz_wait).slideDown(500);
+              
+              $('#confirmation_submit').prop('disabled', true);                              
+                
+                //prevent submit
+                event.preventDefault();
+              
+                var confirmation_email = $("#confirmation_email").val();
+                    $.post("membership/resend_confirmation", { email : confirmation_email , csrf_token : csrf_token  }, function(data) {                                             
+
+                         if(data == 1){
+                             
+                            $("#membership_errors").removeClass("alert-danger").removeClass("alert-info").addClass("alert-success").html(close_button+confirmation_mail_sent).slideDown(500);                            
+                            setTimeout("location.href='"+base_url+"'", 2000);   
+                            
+                         }else if(data){
+                             
+                            $("#membership_errors").removeClass("alert-info").addClass("alert-danger").html(close_button+data).slideDown(500);
+                            $('#confirmation_submit').prop('disabled', false);   
+                                                         
+                         } 
+                         
+
+                      
+                    }); // post  
+                
+         }); // confirmation form
+         
+                            
+                   
+                   
+                     
+         $(document).on('click','#close_membership_errors',function() {
+             
+             $("#membership_errors").slideUp(500);
+             
+         }); // close alert
+          
+          
+          
+          
+ 
+          
+          
+});         
